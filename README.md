@@ -2,7 +2,7 @@
 This project is where Encompass Cast and other ARM SBC based software lives.
 
 ## Setup
-This project uses the Debian Build System, NodeJS and GNU Make. You need to setup your enviornment first. If you are not running this in Debian 11 (Bullseye), you will first need to create a VM for this to work.
+This project uses the Debian Build System, NodeJS and GNU Make. You need to setup your environment first. If you are not running this in Debian 11 (Bullseye), you will first need to create a VM for this to work.
 
 Run this command from the project root.
 
@@ -13,7 +13,7 @@ bash project setup
 > All workflows handle permission elevation, you should never have to use sudo directly.
 
 ## Development
-Each sub-project is responsiable for starting itself in development mode. Simply navigate to the sub-project.
+Each sub-project is responsible for starting itself in development mode. Simply navigate to the sub-project.
 
 ```
 cd cockpit
@@ -76,7 +76,7 @@ Values available to the postinst.sh script.
 A recipe **must** include these three files, you build will fail if they are not there. Any other file you may need can also live in the recipe folder.
 
 ## Maintenance
-This project generates a masive number of files, all of which whould not be committed to version control.
+This project generates a massive number of files, all of which should not be committed to version control.
 
 This command will remove all folders that shouldn't be committed with exception to the main builds folder.
 
