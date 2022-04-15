@@ -1,0 +1,10 @@
+Package: encompass-portal
+Version: __VERSION__
+Section: base
+Priority: optional
+Architecture: __ARCH__
+Installed-Size: 65
+Depends: __DEPENDS__
+Maintainer: Encompass Maintainers <support@e8.co>
+Homepage: https://e8.co
+Description: Capitive WiFi Portal

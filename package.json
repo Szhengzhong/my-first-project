@@ -1,0 +1,12 @@
+{
+    "name": "encompass",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "start": "./project",
+        "build": "./project build",
+        "boards": "./project boards",
+        "setup": "./project setup",
+        "clean": "./project clean"
+    }
+}

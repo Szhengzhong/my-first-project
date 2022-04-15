@@ -1,0 +1,10 @@
+[Unit]
+Description=Capitive WiFi Portal
+After=NetworkManager.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/portal
+
+[Install]
+WantedBy=multi-user.target
