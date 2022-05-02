@@ -4,7 +4,7 @@
             Choose your Wi-Fi network
         </p>
         <p v-if="!connected && !loading && selected">
-            Enter Wi-Fi password
+            Enter Wi-Fi password for {{ selected.ssid }}
         </p>
         <p v-if="connected && !loading">
             Your device is now connected

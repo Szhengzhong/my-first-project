@@ -2,7 +2,7 @@
     <div id="console">
         <navigation />
         <div ref="layout" class="layout">
-            <div class="screen">
+            <div class="screen" v-if="!rebooting">
                 <sections v-on:show="show" :value="section" />
                 <div v-if="system && section === 'system'" class="content">
                     <h2>System Information</h2>
@@ -19,7 +19,7 @@
                         </table>
                         <div class="form-row">
                             <div class="button-group">
-                                <div v-on:click="reboot()" class="button button-primary">Reboot</div>
+                                <div v-on:click="setCount()" class="button button-primary">Reboot</div>
                             </div>
                         </div>
                     </div>
@@ -90,6 +90,16 @@
                         </div>
                     </div>
                 </div>
+                <div v-if="rebootSec >= 0 && section === 'reboot'" class="content">
+                    <h2>Rebooting the system...</h2>
+                    <p>Reboot will occur in {{ rebootSec }} seconds.</p>
+                </div>
+            </div>
+            <div class="screen" v-else>
+                <div class="content">
+                    <h2>Rebooting now</h2>
+                    <p>IP address <strong>may change</strong> after reboot.<br/><br/>If you cannot access the console after a refresh of your browser, please access the Encompass Cast dashboard from inside your Encompass system to open the console again.</p>
+                </div>     
             </div>
         </div>
     </div>
@@ -112,6 +122,8 @@
                 system: null,
                 memory: null,
                 filesystem: null,
+                rebootSec: null,
+                rebooting: false,
             };
         },
 
@@ -152,11 +164,35 @@
                 this.section = section;
             },
 
+            setCount() {
+                this.system = null;
+                this.section = "reboot";
+                this.rebootSec = 3;
+                setTimeout(() => this.countDown(), 1000);
+                
+                // 
+            },
+
+            countDown() {                
+                if (this.rebootSec === 0) {
+                    this.reboot();
+                    return;
+                } 
+
+                this.rebootSec -= 1;
+
+                setTimeout(() => this.countDown(), 1000);
+            },
+
             async reboot() {
+                this.section = null;
+                this.rebootSec = null;
+                this.rebooting = true;
+
                 await this.api.put("/system/reboot");
 
-                setTimeout(() => window.location.reload(), 500);
-            },
+                setTimeout(() => window.location.refresh, 500);
+            }
         },
     };
 </script>

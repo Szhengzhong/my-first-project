@@ -141,7 +141,7 @@ availability() {
 prerequisites() {
 
 	# these are required to run node npm and register with mdns
-	PREREQUISITES=" ca-certificates libgnutls30 git make gcc g++ avahi-daemon avahi-utils"
+	PREREQUISITES=" ca-certificates libgnutls30 git make gcc g++ avahi-daemon avahi-utils ntp"
 
 	if [ ! -e /usr/lib/apt/methods/https ]; then
 		PREREQUISITES="${PREREQUISITES} apt-transport-https"
