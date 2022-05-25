@@ -1,11 +1,17 @@
 import macaddress from "macaddress";
 import axios from "axios";
 import url from "url";
+import systemInfo from "systeminformation";
 
 import instance from "./instance";
 import credentials from "./credentials";
 
 export default class Encompass {
+    static version(): string {
+        const version = "22.6.1";
+        return version;
+    }
+
     static async get(command: string, parameters: string[] | undefined): Promise<{ [key: string]: any }[]> {
         const uri = `https://api.encompass8.com/aspx1/API?EncompassID=DSDLink&APICommand=${command}&APIToken=${credentials}&${(parameters || []).join("&")}`;
 
@@ -53,6 +59,7 @@ export default class Encompass {
         instance.code = Encompass.uuid();
         instance.player = parseInt(registration.ZZ_SignagePlayersID, 10);
         instance.address = registration.IPAddress;
+        instance.manufacturer = registration.Manufacturer_DBValue;
         instance.name = registration.Name;
         instance.url = registration.URL_DBValue;
 
@@ -74,6 +81,7 @@ export default class Encompass {
 
             instance.player = parseInt(registration.ZZ_SignagePlayersID, 10);
             instance.address = registration.IPAddress;
+            instance.manufacturer = registration.Manufacturer_DBValue;
             instance.url = registration.URL_DBValue;
             instance.name = registration.Name;
             instance.registration = instance.code;
@@ -86,11 +94,25 @@ export default class Encompass {
         if (ip && ip !== "" && ip !== instance.address) {
             let content = "";
 
-            content += "\"MACAddress\",\"IPAddress\"\n";
-            content += `"${mac}","${ip}"\n`;
+            content += "\"MACAddress\",\"IPAddress\",\"CastVersion\"\n";
+            content += `"${mac}","${ip}","${Encompass.version()}"\n`;
 
             await this.post("Update_Screen_IP", undefined, content, "device.csv");
         }
+    }
+
+    static async getBoardInfo(): Promise<string> {
+        const mac = await Encompass.mac();
+        const system = await systemInfo.system();
+
+        if (system && system.manufacturer && system.manufacturer !== "" && system.manufacturer !== instance.manufacturer) {
+            let content = "";
+            content += "\"MACAddress\",\"CastVersion\",\"Manufacturer\",\"Board\",\"BoardVersion\"\n";
+            content += `"${mac}","${Encompass.version()}","${system.manufacturer}","${system.model || ""}","${system.version || ""}"\n`;
+            await this.post("Cast_Update_BoardInfo", undefined, content, "device.csv");
+        }
+
+        return system.manufacturer;
     }
 
     static mac(): Promise<string| undefined> {

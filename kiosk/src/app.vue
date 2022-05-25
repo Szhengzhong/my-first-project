@@ -46,6 +46,7 @@
                 timeout: 10 * 1000,
                 registration: undefined,
                 address: undefined,
+                manufacturer: undefined,
                 url: undefined,
             };
         },
@@ -79,7 +80,7 @@
                 this.registration = Instance.registration;
                 this.address = await this.ip();
                 this.loading = false;
-
+                this.manufacturer = await Encompass.getBoardInfo();
                 setTimeout(async () => {
                     await this.fetch();
                 }, this.timeout);

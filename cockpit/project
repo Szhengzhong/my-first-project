@@ -27,6 +27,16 @@ case $1 in
         version
         ;;
 
+    increment )
+        CURRENT_VERSION=$(version)
+        echo "Current Version: ${CURRENT_VERSION}"
+
+        NEW_VERSION=${2?Error: Pass new version}
+        echo "New Version: ${NEW_VERSION}"
+
+        sed -i "s/\"version\": \"${CURRENT_VERSION}\"/\"version\": \"${NEW_VERSION}\"/" package.json
+        ;;
+
     debug )
         debug
         ;;

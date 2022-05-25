@@ -216,6 +216,43 @@ node_globals() {
 }
 
 case $1 in
+    increment )
+        PROJECT=${2?Error: No Project specified}
+        VERSION=${3?Error: Pass new version}
+
+        echo "Updating ${PROJECT} to ${VERSION}"
+
+        case $PROJECT in 
+            image )
+                (cd ./image && sudo ./project increment $VERSION)
+                ;;
+
+            kiosk )
+                (cd ./kiosk && sudo ./project increment $VERSION)
+                ;;
+            
+            portal )
+                (cd ./portal && sudo ./project increment $VERSION)
+                ;;
+            
+            cockpit )
+                (cd ./cockpit && sudo ./project increment $VERSION)
+                ;;
+            
+            all )
+                echo "image"
+                (cd ./image && sudo ./project increment $VERSION)
+                echo "kiosk"
+                (cd ./kiosk && sudo ./project increment $VERSION)
+                echo "portal"
+                (cd ./portal && sudo ./project increment $VERSION)
+                echo "cockpit"
+                (cd ./cockpit && sudo ./project increment $VERSION)
+                ;;
+        esac
+
+        ;;
+
     build )
         shift
 

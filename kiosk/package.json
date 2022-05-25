@@ -1,6 +1,6 @@
 {
     "name": "kiosk",
-    "version": "4.2.1",
+    "version": "22.6.1",
     "description": "Encompass Cast",
     "private": true,
     "author": {
@@ -28,6 +28,7 @@
         "geoip-lite": "^1.4.3",
         "ip": "^1.1.5",
         "macaddress": "^0.5.2",
+        "systeminformation": "^4.22.5",
         "vue": "^2.6.11",
         "vue-class-component": "^7.2.3",
         "vue-cli-plugin-electron-builder": "^2.1.1",

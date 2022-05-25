@@ -26,6 +26,16 @@ case $1 in
 		version $@
 		;;
 
+	increment )
+        CURRENT_VERSION=$(version)
+        echo "Current Version: ${CURRENT_VERSION}"
+
+        NEW_VERSION=${2?Error: Pass new version}
+        echo "New Version: ${NEW_VERSION}"
+
+        sed -i "s/\"version\": \"${CURRENT_VERSION}\"/\"version\": \"${NEW_VERSION}\"/" package.json
+        ;;
+
 	boards )
 		for board in config/boards/*.conf; do
 			printf "$(head -2 "${board}" | tail -1 | sed 's/export //' | sed 's/BOARD_NAME="//' | sed 's/"//')\033[1;30m$(head -1 "${board}" | cut -d'#' -f2)\033[0m\n"

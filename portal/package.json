@@ -1,6 +1,6 @@
 {
     "name": "portal",
-    "version": "4.1.5",
+    "version": "22.6.1",
     "description": "Encompass Capitive WiFi Portal",
     "license": "GPL-3.0",
     "main": "main.js",
