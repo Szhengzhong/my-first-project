@@ -1,9 +1,0 @@
-#!/bin/bash
-
-xset s off
-xset s noblank
-xset -dpms
-
-setxkbmap -option terminate:ctrl_alt_bksp
-
-"/opt/Encompass Cast/kiosk" --no-sandbox
