@@ -1,4 +1,0 @@
-#!/bin/sh
-
-systemctl enable cockpit.service || true
-systemctl start cockpit.service || true
