@@ -1,5 +1,0 @@
-#!/usr/bin/env -S node --max-old-space-size=256
-
-process.title = "portal";
-
-require("../lib/portal/main")();
