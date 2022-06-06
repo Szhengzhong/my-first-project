@@ -1,0 +1,5 @@
+#!/bin/sh
+
+systemctl disable hostapd.service || true
+systemctl disable dnsmasq.service || true
+systemctl enable portal.service || true
