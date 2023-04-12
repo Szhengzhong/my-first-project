@@ -1,0 +1,126 @@
+<div id="app">
+    <div id="cast-content">
+        <div id="cast-header">
+            <div id="register-button" class="button" action="Register">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                    <path fill="#202c40" d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" />
+                </svg>
+                <span>Register New Screen</span>
+            </div>
+            <div id="back-button" class="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                    <path fill="#202c40" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                </svg>
+                <span>Back</span>
+            </div>
+        </div>
+        <div id="cast-layout">
+            <div id="cast-data">
+                <table id="cast-players" class="data-table" cellspacing="0">
+                    <thead class="mobile-hide">
+                        <tr>
+                            <th class="data-full-press">Screen Name</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cast-player-records" class="data-body"></tbody>
+                </table>
+                <div id="cast-player">
+                    <h1 id="player-title"></h1>
+                    <div class="fieldset">
+                        <div id="form-validation" class="form-validation">
+                            <div id="form-message" class="form-message"></div>
+                        </div>
+                        <div class="row">
+                            <div class="fields">
+                                <div class="row">
+                                    <div class="field">
+                                        <span class="title">Screen Name</span>
+                                        <input type="text" id="player-name" maxlength="50" value="" autocomplete="off" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="field">
+                                        <span class="title">URL</span>
+                                        <input type="text" id="player-url" maxlength="500" value="" autocomplete="off" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="field">
+                                        <span class="title">Username</span>
+                                        <span class="note">Only required if your dashboard needs to be authenticated</span>
+                                        <input type="text" id="player-username" value="" autocomplete="off" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="field">
+                                        <span class="title">Password</span>
+                                        <span class="note">Only required if your dashboard needs to be authenticated</span>
+                                        <input type="password" id="player-password" value="" autocomplete="off" />
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div id="player-save-changes" class="button button-primary">Save Changes</div>
+                                    <div id="player-console" class="button">Device Console</div>
+                                </div>
+                            </div>
+                            <div class="screen">
+                                <div class="preview">
+                                    <div id="screen">
+                                        <iframe id="screen-frame" src="about:blank" frameborder="0" onload="this.style.opacity = 1;"></iframe>
+                                    </div>
+                                </div>
+                                <p class="preview-note">
+                                    This preview will only display content from your site or secure content. Non secure content can only be loaded from the actual screen.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="cast-register">
+                    <h1>Register New Screen</h1>
+                    <div class="fieldset">
+                        <div id="form-validation" class="form-validation">
+                            <div id="form-message" class="form-message"></div>
+                        </div>
+                        <div class="row">
+                            <div class="fields">
+                                <div class="row">
+                                    <div class="field">
+                                        <span class="title">Screen Name</span>
+                                        <input type="text" maxlength="50" id="new-player-name" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="field">
+                                        <span class="title">Registration Code</span>
+                                        <input type="text" class="code-input" maxlength="7" id="new-player-code" autocomplete="off">
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div id="register-player" class="button button-primary">Register</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="data-spinner" class="spinner">
+                    <div class="inner">
+                        <div class="grid">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

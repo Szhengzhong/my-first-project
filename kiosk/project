@@ -1,0 +1,59 @@
+#!/bin/bash
+
+export ROOT="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+
+if [[ "${EUID}" == "0" ]] || [[ "${1}" == "vagrant" ]]; then
+	:
+else
+	echo "This script requires root privileges, trying to use sudo"
+
+	sudo "${ROOT}/project" "$@"
+	exit $?
+fi
+
+version() {
+    echo `node -e 'console.log(require("./package.json").version)'`
+}
+
+case $1 in
+    version ) 
+        version
+        ;;
+
+    increment )
+        CURRENT_VERSION=$(version)
+        echo "Current Version: ${CURRENT_VERSION}"
+
+        NEW_VERSION=${2?Error: Pass new version}
+        echo "New Version: ${NEW_VERSION}"
+
+        sed -i "s/\"version\": \"${CURRENT_VERSION}\"/\"version\": \"${NEW_VERSION}\"/" package.json
+        sed -i "s/const version = \"${CURRENT_VERSION}\"/const version = \"${NEW_VERSION}\"/" ./src/encompass.ts
+        ;;
+
+    debug )
+        ./node_modules/.bin/vue-cli-service electron:serve
+        ;;
+
+    build )
+        rm -fR ./dist
+        rm -fR ./builds
+
+        VERSION=$(version)
+
+        mkdir -p builds
+
+        ./node_modules/.bin/vue-cli-service electron:build --linux deb --armv7l
+        cp ./dist/kiosk_${VERSION}_armv7l.deb ./builds/encompass-kiosk-armhf.deb
+        ./node_modules/.bin/vue-cli-service electron:build --linux deb --arm64
+        cp ./dist/kiosk_${VERSION}_arm64.deb ./builds/encompass-kiosk-arm64.deb
+
+        rm -fR ./dist
+        ;;
+
+    clean )
+        rm -fR ./dist
+        rm -fR ./builds
+        rm -fR ./node_modules
+        ;;
+esac

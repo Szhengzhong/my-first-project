@@ -1,0 +1,4 @@
+#!/bin/sh
+
+systemctl enable nvr.service || true
+systemctl start nvr.service || true

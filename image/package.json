@@ -1,0 +1,25 @@
+{
+    "name": "encompass-image",
+    "version": "22.7.1",
+    "description": "Encompass Image Builder",
+    "license": "GPL-3.0",
+    "engines": {
+        "armbian": "22.02.0-trunk",
+        "nodesource": "node_16.x",
+        "node": "16.14.0"
+    },
+    "author": {
+        "name": "Michael J Kellsy"
+    },
+    "scripts": {
+        "boards": "./project boards",
+        "clean": "./project clean"
+    },
+    "devDependencies": {
+        "as-table": "^1.0.55",
+        "axios": "^0.23.0",
+        "chalk": "^4.1.2",
+        "commander": "^8.2.0",
+        "mongodb": "^4.1.3"
+    }
+}

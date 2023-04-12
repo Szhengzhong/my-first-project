@@ -1,0 +1,10 @@
+[Unit]
+Description=Encompass Cockpit
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/cockpit start -p 8080
+
+[Install]
+WantedBy=multi-user.target
