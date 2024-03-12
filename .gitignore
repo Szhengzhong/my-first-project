@@ -128,3 +128,13 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# custom
+cockpit/builds/
+kiosk/builds/
+nvr/builds/
+portal/builds/
+image/cache/
+image/output/
+image/userpatches/
+builds/
