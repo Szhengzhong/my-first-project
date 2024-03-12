@@ -12,7 +12,7 @@ export default class Encompass {
         return version;
     }
 
-    static async get(command: string, parameters: string[] | undefined): Promise<{ [key: string]: any }[]> {
+    static async get(command: string, parameters: string[] | undefined): Promise<{ [key: string]: any }[] | undefined> {
         const uri = `https://api.encompass8.com/aspx1/API?EncompassID=DSDLink&APICommand=${command}&APIToken=${credentials}&${(parameters || []).join("&")}`;
 
         try {
@@ -28,9 +28,9 @@ export default class Encompass {
                 return response[node].Row;
             }
 
-            return [];
+            return undefined;
         } catch (error) {
-            return [];
+            return undefined;
         }
     }
 
@@ -54,7 +54,9 @@ export default class Encompass {
     static async register(): Promise<void> {
         const mac = await Encompass.mac();
 
-        let registration = (await this.get("Get_Screen", [`parameters=F:MACAddress~V:${mac}~O:E`]))[0] || {};
+        // Task 2003806: Cone: Screenshot shows nothing under screen name, because they are missing.
+        let response = await this.get("Get_Screen", [`parameters=F:MACAddress~V:${mac}~O:E`]);
+        let registration = (response || response || [])[0] || {};
 
         instance.code = Encompass.uuid();
         instance.player = parseInt(registration.ZZ_SignagePlayersID, 10);
@@ -69,7 +71,7 @@ export default class Encompass {
             instance.registration = undefined;
         }
 
-        if (!instance.player) {
+        if (!instance.player && !response) {
             let content = "";
 
             content += "\"EncompassID\",\"MACAddress\",\"Name\"\n";
@@ -77,7 +79,8 @@ export default class Encompass {
 
             await this.post("Register_Screen", undefined, content, "player.csv");
 
-            registration = (await this.get("Get_Screen", [`parameters=F:MACAddress~V:${mac}~O:E`]))[0] || {};
+            response = await this.get("Get_Screen", [`parameters=F:MACAddress~V:${mac}~O:E`]);
+            registration = (response || response || [])[0] || {};
 
             instance.player = parseInt(registration.ZZ_SignagePlayersID, 10);
             instance.address = registration.IPAddress;
@@ -115,7 +118,7 @@ export default class Encompass {
         return system.manufacturer;
     }
 
-    static mac(): Promise<string| undefined> {
+    static mac(): Promise<string | undefined> {
         return new Promise((resolve) => {
             macaddress.one((error, address) => {
                 if (!error) {
