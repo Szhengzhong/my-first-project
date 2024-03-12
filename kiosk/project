@@ -43,6 +43,8 @@ case $1 in
 
         mkdir -p builds
 
+        export ELECTRON_MIRROR=https://mirrors.huaweicloud.com/electron/
+        export ELECTRON_BUILDER_BINARIES_MIRROR=https://mirrors.huaweicloud.com/electron-builder-binaries/
         ./node_modules/.bin/vue-cli-service electron:build --linux deb --armv7l
         cp ./dist/kiosk_${VERSION}_armv7l.deb ./builds/encompass-kiosk-armhf.deb
         ./node_modules/.bin/vue-cli-service electron:build --linux deb --arm64

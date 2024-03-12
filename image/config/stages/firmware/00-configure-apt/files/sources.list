@@ -1,2 +1,3 @@
-deb http://raspbian.raspberrypi.org/raspbian/ RELEASE main contrib non-free rpi
+deb https://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ RELEASE main contrib non-free rpi
+#deb http://raspbian.raspberrypi.org/raspbian/ RELEASE main contrib non-free rpi
 #deb-src http://raspbian.raspberrypi.org/raspbian/ RELEASE main contrib non-free rpi
