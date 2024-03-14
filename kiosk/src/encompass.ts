@@ -71,7 +71,7 @@ export default class Encompass {
             instance.registration = undefined;
         }
 
-        if (!instance.player && !response) {
+        if (!instance.player && response !== undefined) {
             let content = "";
 
             content += "\"EncompassID\",\"MACAddress\",\"Name\"\n";
