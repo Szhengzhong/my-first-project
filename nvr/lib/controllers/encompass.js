@@ -319,7 +319,7 @@ class Encompass {
     }
 
     version() {
-        const version = "22.7.1";
+        const version = "22.7.9";
         return version;
     }
 }
