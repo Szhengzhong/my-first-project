@@ -10,7 +10,7 @@ preinst()
 
 	# copy the software from the sub projects to the temp folder these will be called when chroot happens
 	cp "${ROOT}/portal/builds/encompass-portal.deb" "${SDCARD}/tmp/encompass-portal.deb"
-	cp "${ROOT}/cockpit/builds/encompass-cockpit.deb" "${SDCARD}/tmp/encompass-cockpit.deb"
+	cp "${ROOT}/cockpit/builds/blockone-cockpit.deb" "${SDCARD}/tmp/blockone-cockpit.deb"
 	cp "${ROOT}/kiosk/builds/encompass-kiosk-armhf.deb" "${SDCARD}/tmp/encompass-kiosk-armhf.deb"
 	cp "${ROOT}/kiosk/builds/encompass-kiosk-arm64.deb" "${SDCARD}/tmp/encompass-kiosk-arm64.deb"
 	cp "${ROOT}/nvr/builds/encompass-nvr.deb" "${SDCARD}/tmp/encompass-nvr.deb"

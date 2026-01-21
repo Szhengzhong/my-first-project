@@ -213,7 +213,7 @@ software() {
 
 	# this is the web interface that allows users to remotely reboot this device
 	message "Installing Device Control" "" "info"
-	dpkg -i /tmp/encompass-cockpit.deb
+	dpkg -i /tmp/blockone-cockpit.deb
 
 	message "Installing Kiosk Interface" "" "info"
 

@@ -1,6 +1,6 @@
 cockpit: clean paths metadata package deploy vue modules
 	dpkg-deb --build dist
-	cp dist.deb builds/encompass-cockpit.deb
+	cp dist.deb builds/blockone-cockpit.deb
 	rm -f dist.deb
 	rm -fR dist
 	rm -fR interface

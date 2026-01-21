@@ -213,7 +213,7 @@ software() {
 
 	# this is the web interface that allows users to remotely reboot this device
 	message "Installing Device Control" "" "info"
-	dpkg -i /tmp/encompass-cockpit.deb
+	dpkg -i /tmp/blockone-cockpit.deb
 
 	# this is the web interface that allows users to setup nvr and sets up the nvr cronjobs
 	message "Installing Network Video Recorder" "" "info"
