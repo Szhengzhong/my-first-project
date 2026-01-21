@@ -8,7 +8,7 @@ import credentials from "./credentials";
 
 export default class Encompass {
     static version(): string {
-        const version = "22.7.9";
+        const version = "22.7.10";
         return version;
     }
 

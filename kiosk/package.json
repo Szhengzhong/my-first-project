@@ -1,6 +1,6 @@
 {
     "name": "kiosk",
-    "version": "22.7.9",
+    "version": "22.7.10",
     "description": "Encompass Cast",
     "private": true,
     "author": {
@@ -14,13 +14,13 @@
         "postinstall": "electron-builder install-app-deps",
         "postuninstall": "electron-builder install-app-deps"
     },
-    "main": "background.js",
+    "main": "background.ts",
     "dependencies": {
         "axios": "^0.26.1",
         "browserslist": "^4.19.3",
         "caniuse-lite": "^1.0.30001313",
         "core-js": "^3.6.5",
-        "electron": "^12.1.0",
+        "electron": "^20.1.0",
         "electron-builder": "^22.10.5",
         "electron-devtools-installer": "^3.1.0",
         "evilscan": "^1.8.1",
