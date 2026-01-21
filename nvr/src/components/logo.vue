@@ -1,6 +1,6 @@
 <template>
     <div id="logo">
-        <svg id="图层_1" data-name="图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 331.211 113.729">
+        <svg id="图层_1" data-name="图层 1" :width="width" :height="height" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 331.211 113.729">
             <defs>
                 <style>
                     .cls-1 {
