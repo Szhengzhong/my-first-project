@@ -26,7 +26,7 @@ module.exports = {
         config.plugin("html").tap((args) => {
             const payload = args;
 
-            payload[0].title = "Encompass";
+            payload[0].title = "Block One";
 
             return payload;
         });

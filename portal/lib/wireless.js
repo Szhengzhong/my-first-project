@@ -39,7 +39,7 @@ class Wireless {
             } else if (network.hotspot.running) {
                 network.hotspot.stop();
                 network.wireless.disconnect("wlan0");
-                network.hotspot.start("Encompass", "wlan0");
+                network.hotspot.start("BlockOne", "wlan0");
             }
         }
 

@@ -209,7 +209,7 @@ software() {
 
 	# this is the wifi portal package
 	message "Installing WiFi portal" "" "info"
-	dpkg -i /tmp/encompass-portal.deb
+	dpkg -i /tmp/blockone-portal.deb
 
 	# this is the web interface that allows users to remotely reboot this device
 	message "Installing Device Control" "" "info"
