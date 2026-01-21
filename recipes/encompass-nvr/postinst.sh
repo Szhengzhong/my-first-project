@@ -15,7 +15,7 @@ postinst()
 	display_alert "Removing software payload" "" "info"
 	rm -f "${SDCARD}/tmp/encompass-portal.deb"
 	rm -f "${SDCARD}/tmp/blockone-cockpit.deb"
-	rm -f "${SDCARD}/tmp/encompass-nvr.deb"
+	rm -f "${SDCARD}/tmp/blockone-nvr.deb"
 }
 
 export -f postinst

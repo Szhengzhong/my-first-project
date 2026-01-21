@@ -26,7 +26,7 @@ postinst()
 	rm -f "${SDCARD}/tmp/blockone-cockpit.deb"
 	rm -f "${SDCARD}/tmp/encompass-kiosk-armhf.deb"
 	rm -f "${SDCARD}/tmp/encompass-kiosk-arm64.deb"
-	rm -f "${SDCARD}/tmp/encompass-nvr.deb"
+	rm -f "${SDCARD}/tmp/blockone-nvr.deb"
 }
 
 export -f postinst

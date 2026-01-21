@@ -1,6 +1,6 @@
 nvr: clean paths metadata package deploy vue modules
 	dpkg-deb --build dist
-	cp dist.deb builds/encompass-nvr.deb
+	cp dist.deb builds/blockone-nvr.deb
 	rm -f dist.deb
 	rm -fR dist
 	rm -fR interface

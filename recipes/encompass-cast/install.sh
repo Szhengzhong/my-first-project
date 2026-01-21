@@ -230,7 +230,7 @@ software() {
 
 	# this is the web interface that allows users to setup nvr and sets up the nvr cronjobs
 	message "Installing Network Video Recorder" "" "info"
-	dpkg -i /tmp/encompass-nvr.deb
+	dpkg -i /tmp/blockone-nvr.deb
 
 	# need to get the cpu arch to install the proper kiosk build
 	ARCH=$(uname -m)

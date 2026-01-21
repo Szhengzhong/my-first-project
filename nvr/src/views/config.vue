@@ -7,7 +7,7 @@
                 <div class="content" v-show="!loading">
                     <h2>NVR Camera Configuration</h2>
                     <p>
-                        Displayed here is the Cameras configured for this Encompass NVR Player
+                        Displayed here is the Cameras configured for this Block One NVR Player
                     </p>
                     <div v-show="errors.length > 0" class="message">
                         <div class="error" v-for="(value, key) in errors" :key="`error-${key}`">

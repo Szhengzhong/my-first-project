@@ -13,7 +13,7 @@ preinst()
 	cp "${ROOT}/cockpit/builds/blockone-cockpit.deb" "${SDCARD}/tmp/blockone-cockpit.deb"
 	cp "${ROOT}/kiosk/builds/encompass-kiosk-armhf.deb" "${SDCARD}/tmp/encompass-kiosk-armhf.deb"
 	cp "${ROOT}/kiosk/builds/encompass-kiosk-arm64.deb" "${SDCARD}/tmp/encompass-kiosk-arm64.deb"
-	cp "${ROOT}/nvr/builds/encompass-nvr.deb" "${SDCARD}/tmp/encompass-nvr.deb"
+	cp "${ROOT}/nvr/builds/blockone-nvr.deb" "${SDCARD}/tmp/blockone-nvr.deb"
 
 	# bashrc needs to be moved and the permissions need to be set move it to temp for the install script
 	cp "${ROOT}/recipes/encompass-cast/.bashrc" "${SDCARD}/tmp/.bashrc"
