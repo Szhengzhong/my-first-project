@@ -184,16 +184,16 @@ setup() {
 }
 
 users() {
-	message "Adding Encompass user" "" "info"
+	message "Adding Block One user" "" "info"
 
-	# the encompass user is added earlier in some build configs only add it if it doesn't exist
-	if ! id -u encompass > /dev/null 2>&1; then
-		adduser --gecos encompass --disabled-password encompass > /dev/null 2>&1
+	# the blockone user is added earlier in some build configs only add it if it doesn't exist
+	if ! id -u blockone > /dev/null 2>&1; then
+		adduser --gecos blockone --disabled-password blockone > /dev/null 2>&1
 	fi
 
-	# make sure the encompass user can use the sudo command
-	adduser encompass sudo > /dev/null 2>&1
-	echo "encompass:loadsheet" | chpasswd > /dev/null 2>&1
+	# make sure the blockone user can use the sudo command
+	adduser blockone sudo > /dev/null 2>&1
+	echo "blockone:loadsheet" | chpasswd > /dev/null 2>&1
 
 	# don't want root to be able to login
 	message "Locking root account" "" "info"
@@ -221,9 +221,9 @@ software() {
 	apt-get install -y xserver-xorg x11-xserver-utils xinit openbox libnotify4 libnss3 libxss1 xdg-utils libsecret-1-0 libasound2
 
 	# this installs the user profile that starts the xserver and openbox
-	install -m 644 /tmp/.bashrc "/home/encompass/"
-	chown -R encompass:encompass /home/encompass
-	chown -R encompass:encompass /home/encompass/.bashrc
+	install -m 644 /tmp/.bashrc "/home/blockone/"
+	chown -R blockone:blockone /home/blockone
+	chown -R blockone:blockone /home/blockone/.bashrc
 
 	# these are needed to run the nvr app
 	apt-get install -y ffmpeg ntfs-3g fuse
@@ -239,13 +239,13 @@ software() {
 		armv7l | armhf )
 
 			# 32 bit arm cpu
-			dpkg -i /tmp/encompass-kiosk-armhf.deb
+			dpkg -i /tmp/blockone-kiosk-armhf.deb
 			;;
 
 		aarch64 | arm64 )
 
 			# 64 bit arm cpu
-			dpkg -i /tmp/encompass-kiosk-arm64.deb
+			dpkg -i /tmp/blockone-kiosk-arm64.deb
 			;;
 	esac
 

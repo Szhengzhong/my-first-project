@@ -46,9 +46,9 @@ case $1 in
         export ELECTRON_MIRROR=https://mirrors.huaweicloud.com/electron/
         export ELECTRON_BUILDER_BINARIES_MIRROR=https://mirrors.huaweicloud.com/electron-builder-binaries/
         ./node_modules/.bin/vue-cli-service electron:build --linux deb --armv7l
-        cp ./dist/kiosk_${VERSION}_armv7l.deb ./builds/encompass-kiosk-armhf.deb
+        cp ./dist/kiosk_${VERSION}_armv7l.deb ./builds/blockone-kiosk-armhf.deb
         ./node_modules/.bin/vue-cli-service electron:build --linux deb --arm64
-        cp ./dist/kiosk_${VERSION}_arm64.deb ./builds/encompass-kiosk-arm64.deb
+        cp ./dist/kiosk_${VERSION}_arm64.deb ./builds/blockone-kiosk-arm64.deb
 
         rm -fR ./dist
         ;;

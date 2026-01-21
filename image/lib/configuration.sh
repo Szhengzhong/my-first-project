@@ -2,10 +2,10 @@
 
 REVISION=$(cd ${SRC} && ./project version armbian)"$SUBREVISION"
 
-[[ -z $VENDOR ]] && VENDOR="Encompass"
+[[ -z $VENDOR ]] && VENDOR="blockone"
 [[ -z $ROOTPWD ]] && ROOTPWD="loadsheet"
-[[ -z $MAINTAINER ]] && MAINTAINER="Mike Kellsy"
-[[ -z $MAINTAINERMAIL ]] && MAINTAINERMAIL="kellsy@encompass8.com"
+[[ -z $MAINTAINER ]] && MAINTAINER="Block One"
+[[ -z $MAINTAINERMAIL ]] && MAINTAINERMAIL="support@blockone.com"
 [[ -z $DEB_COMPRESS ]] && DEB_COMPRESS="xz"
 
 TZDATA=$(cat /etc/timezone)
@@ -14,7 +14,7 @@ HOSTRELEASE=$(cat /etc/os-release | grep VERSION_CODENAME | cut -d"=" -f2)
 
 [[ -z $HOSTRELEASE ]] && HOSTRELEASE=$(cut -d'/' -f1 /etc/debian_version)
 [[ -z $EXIT_PATCHING_ERROR ]] && EXIT_PATCHING_ERROR=""
-[[ -z $HOST ]] && HOST="encompass"
+[[ -z $HOST ]] && HOST="blockone"
 
 cd "${SRC}" || exit
 

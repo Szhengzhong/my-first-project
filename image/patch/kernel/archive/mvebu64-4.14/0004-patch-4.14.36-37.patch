@@ -6623,7 +6623,7 @@ index dfa360d18ae2..9f21c29d0259 100644
 -		    extent_map_end(existing) >= extent_map_end(em) &&
 -		    em->block_start == existing->block_start) {
 -			/*
--			 * The existing extent map already encompasses the
+-			 * The existing extent map already blockone the
 -			 * entire extent map we tried to add.
 -			 */
 +		if (start >= existing->start &&

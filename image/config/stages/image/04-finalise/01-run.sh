@@ -12,8 +12,8 @@ if hash hardlink 2>/dev/null; then
 fi
 EOF
 
-if [ -d "${ROOTFS_DIR}/home/encompass/.config" ]; then
-	chmod 700 "${ROOTFS_DIR}/home/encompass/.config"
+if [ -d "${ROOTFS_DIR}/home/blockone/.config" ]; then
+	chmod 700 "${ROOTFS_DIR}/home/blockone/.config"
 fi
 
 rm -f "${ROOTFS_DIR}/usr/bin/qemu-arm-static"

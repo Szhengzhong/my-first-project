@@ -6,10 +6,10 @@ postinst()
 	SDCARD=$2
 	RELEASE=$3
 
-	# this configures linux to auto login the encompass user on the first terminal
+	# this configures linux to auto login the blockone user on the first terminal
 	display_alert "Configuring autologin" "" "info"
 	install -d "${SDCARD}/etc/systemd/system/getty@tty1.service.d"
-	install -m 644 "${ROOT}/recipes/encompass-cast/autologin.conf" "${SDCARD}/etc/systemd/system/getty@tty1.service.d/"
+	install -m 644 "${ROOT}/recipes/blockone-cast/autologin.conf" "${SDCARD}/etc/systemd/system/getty@tty1.service.d/"
 
 	# the pre install script copied the deb files to temp remove them
 	display_alert "Removing software payload" "" "info"
