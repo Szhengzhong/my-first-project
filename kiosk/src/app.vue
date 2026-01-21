@@ -4,12 +4,12 @@
             <div class="inner">
                 <logo class="logo" :width="500" :height="82" />
                 <div v-if="player && registration" class="message">
-                    <span>Enter this code in the <b>Encompass Cast</b> dashboard to configure.</span>
+                    <span>Enter this code in the <b>Block One Cast</b> dashboard to configure.</span>
                     <span class="registration">{{ code }}</span>
                     <span class="address">{{ address }}</span>
                 </div>
                 <div v-else-if="player" class="message">
-                    <span>Open the <b>Encompass Cast</b> dashboard to configure.</span>
+                    <span>Open the <b>Block One Cast</b> dashboard to configure.</span>
                     <span class="registration">{{ display }}</span>
                     <span class="address">{{ address }}</span>
                 </div>
