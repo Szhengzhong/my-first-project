@@ -32,7 +32,7 @@ case $1 in
         ;;
 
     debug )
-        ./node_modules/.bin/vue-cli-service electron:serve
+        ./node_modules/.bin/vue-cli-service electron:serve --no-sandbox
         ;;
 
     build )

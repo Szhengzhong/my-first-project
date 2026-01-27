@@ -134,6 +134,7 @@ cockpit/builds/
 kiosk/builds/
 nvr/builds/
 portal/builds/
+portal/interface/
 image/cache/
 image/output/
 image/userpatches/

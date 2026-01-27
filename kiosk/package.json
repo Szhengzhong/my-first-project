@@ -1,6 +1,6 @@
 {
     "name": "kiosk",
-    "version": "22.7.10",
+    "version": "22.7.17",
     "description": "Block One Cast",
     "private": true,
     "author": {
@@ -14,7 +14,7 @@
         "postinstall": "electron-builder install-app-deps",
         "postuninstall": "electron-builder install-app-deps"
     },
-    "main": "background.ts",
+    "main": "background.js",
     "dependencies": {
         "axios": "^0.26.1",
         "browserslist": "^4.19.3",

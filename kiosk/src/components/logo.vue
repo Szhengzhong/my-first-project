@@ -1,7 +1,8 @@
+<!-- eslint-disable max-len, vue/html-indent -->
 <template>
     <div id="logo">
-        <svg id="图层_1" data-name="图层 1" :width="width" :height="height" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 331.211 113.729" version="1.1"
-            xmlns:xlink="http://www.w3.org/1999/xlink">
+        <svg id="图层_1" data-name="图层 1" :width="width" :height="height" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 331.211 113.729" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
             <title>B1_Logo_New</title>
             <path fill="#312559"
                 d="M37.657,78.358v-43H73.151a13.57,13.57,0,0,1,5.815,2.265,13.213,13.213,0,0,1,3.667,16.951c5.307,3.9,7.619,10.265,4.749,16.471-1.484,3.209-5.683,7.312-9.439,7.312Zm7.488-25.382H73.151c1.8,0,3.746-2.84,3.746-4.931s-2-4.624-3.447-4.624h-28.3Zm0,7.764v9.406l.449.448H76.445a4.755,4.755,0,0,0,4.72-4.927c0-2.391-1.552-4.927-3.821-4.927Z">
@@ -44,10 +45,10 @@
 </template>
 
 <script>
-export default {
-    name: "logo",
-    props: { width: Number, height: Number },
-};
+    export default {
+        name: "logo",
+        props: { width: Number, height: Number },
+    };
 </script>
 
 <style lang="scss" scoped>

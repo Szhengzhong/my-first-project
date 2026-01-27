@@ -128,17 +128,23 @@ export default {
             if (!this.interval) this.interval = setInterval(() => this.scan(), 10 * 1000);
         },
 
-        connect(ssid, password) {
+        async connect(ssid, password) {
             if (this.iface) {
                 this.loading = true;
                 this.connected = false;
 
-                request.post(`/api/${this.iface}/connect/`, { ssid, password });
+                await request.post(`/api/${this.iface}/connect/`, { ssid, password });
 
-                setTimeout(() => {
+                // setTimeout(() => {
+                //     this.connected = true;
+                //     this.loading = false;
+                // }, 1000 * 5);
+
+                if (((((await request.get("/api/")) || {}).data || {}).connections || []).find((connection) => connection.iface === this.iface && connection.ssid === ssid)) {
                     this.connected = true;
-                    this.loading = false;
-                }, 1000 * 5);
+                } else {
+                    this.scan();
+                }
             }
         },
 
