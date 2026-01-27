@@ -28,22 +28,30 @@ class Wireless {
         if (network.wireless.enabled) {
             network.wireless.connect(request.body.ssid, request.body.password, request.params.iface);
 
-            if (network.wireless.current().find((connection) => connection.ssid === request.body.ssid)) {
-                if (network.hotspot.running) {
-                    network.hotspot.stop();
+            // Delay to allow connection to establish
+            setTimeout(() => {
+                if (network.wireless.current().find((connection) => connection.ssid === request.body.ssid)) {
+                    if (network.hotspot.running) {
+                        network.hotspot.stop();
 
-                    command.exec("nmcli", "device", "reapply", `'${(request.params.iface || "").replace(/'/gi, "'\"'\"'")}'`);
+                        command.exec("nmcli", "device", "reapply", `'${(request.params.iface || "").replace(/'/gi, "'\"'\"'")}'`);
+                    }
+
+                    response.send({ success: true });
+
+                    process.exit();
+                } else {
+                    if (network.hotspot.running) {
+                        network.hotspot.stop();
+                        network.wireless.disconnect("wlan0");
+                        network.hotspot.start("BlockOne", "wlan0");
+                    }
+                    response.send({ success: false, message: "Failed to connect to WiFi" });
                 }
-
-                process.exit();
-            } else if (network.hotspot.running) {
-                network.hotspot.stop();
-                network.wireless.disconnect("wlan0");
-                network.hotspot.start("Encompass", "wlan0");
-            }
+            }, 5000); // Wait 5 seconds for connection
+        } else {
+            response.send({ success: false, message: "Wireless is disabled" });
         }
-
-        response.send();
     }
 
     disconnect(request, response) {

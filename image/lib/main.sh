@@ -36,7 +36,7 @@ if [[ $BUILD_ALL != "yes" && -z $ROOT_FS_CREATE_ONLY ]]; then
 fi
 
 export BUILD_VERSION
-export BACKTITLE="Encompass OS ${BUILD_VERSION} Image Build Utility"
+export BACKTITLE="Block One OS ${BUILD_VERSION} Image Build Utility"
 
 [[ -z $LANGUAGE ]] && export LANGUAGE="en_US:en"
 [[ -z $CONSOLE_CHAR ]] && export CONSOLE_CHAR="UTF-8"

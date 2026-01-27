@@ -8,8 +8,8 @@ postinst()
 
 	# the pre install script copied the deb files to temp remove them
 	display_alert "Removing software payload" "" "info"
-	rm -f "${SDCARD}/tmp/encompass-portal.deb"
-	rm -f "${SDCARD}/tmp/encompass-cockpit.deb"
+	rm -f "${SDCARD}/tmp/blockone-portal.deb"
+	rm -f "${SDCARD}/tmp/blockone-cockpit.deb"
 }
 
 export -f postinst

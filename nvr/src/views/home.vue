@@ -7,7 +7,7 @@
                 <div class="content" v-if="!loading">
                     <h2>Player Information</h2>
                     <p>
-                        Displayed here is the information about this Encompass NVR Player
+                        Displayed here is the information about this Block One NVR Player
                     </p>
                     <div v-if="player && registration" class="message">
                         <span>Redirecting you to the Register screen in {{ countSec }} sec</span>

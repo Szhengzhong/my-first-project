@@ -1,7 +1,7 @@
 {
     "name": "portal",
-    "version": "22.7.10",
-    "description": "Encompass Capitive WiFi Portal",
+    "version": "22.7.17",
+    "description": "Block One Capitive WiFi Portal",
     "license": "GPL-3.0",
     "main": "main.js",
     "author": {

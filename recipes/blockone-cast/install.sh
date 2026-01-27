@@ -167,33 +167,44 @@ prerequisites() {
 setup() {
 
 	# download and install required gpg keys for the nodesource and yarn repos
-	curl -ks https://deb.nodesource.com/gpgkey/nodesource.gpg.key | gpg --dearmor | tee /usr/share/keyrings/nodesource.gpg > /dev/null
-	curl -ks https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg > /dev/null
+	# curl -ks https://deb.nodesource.com/gpgkey/nodesource.gpg.key | gpg --dearmor | tee /usr/share/keyrings/nodesource.gpg > /dev/null
+	# curl -ks https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg > /dev/null
 
 	# configure the nodesource repo
-	echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/${NODE_REPO} ${RELEASE} main" | tee /etc/apt/sources.list.d/nodesource.list > /dev/null 2>&1
-	echo "deb-src [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/${NODE_REPO} ${RELEASE} main" | tee -a /etc/apt/sources.list.d/nodesource.list > /dev/null 2>&1
-	echo "" | tee -a /etc/apt/sources.list.d/nodesource.list > /dev/null 2>&1
+	# echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/${NODE_REPO} ${RELEASE} main" | tee /etc/apt/sources.list.d/nodesource.list > /dev/null 2>&1
+	# echo "deb-src [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/${NODE_REPO} ${RELEASE} main" | tee -a /etc/apt/sources.list.d/nodesource.list > /dev/null 2>&1
+	# echo "" | tee -a /etc/apt/sources.list.d/nodesource.list > /dev/null 2>&1
 
 	# configure the yarn repo
-	echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list > /dev/null 2>&1
-	echo "" | tee -a /etc/apt/sources.list.d/yarn.list > /dev/null 2>&1
+	# echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list > /dev/null 2>&1
+	# echo "" | tee -a /etc/apt/sources.list.d/yarn.list > /dev/null 2>&1
+
+	# Update local package index
+	sudo apt-get update
+	# Install necessary packages for downloading and verifying new repository information
+	sudo apt-get install -y ca-certificates curl gnupg
+	# Create a directory for the new repository's keyring, if it doesn't exist
+	sudo mkdir -p /etc/apt/keyrings
+	# Download the new repository's GPG key and save it in the keyring directory
+	curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+	# Add the new repository's source list with its GPG key for package verification
+	echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_${NODE_REPO} nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
 
 	# make sure the software sources is up to date after this change
 	apt-get update
 }
 
 users() {
-	message "Adding Encompass user" "" "info"
+	message "Adding Block One user" "" "info"
 
-	# the encompass user is added earlier in some build configs only add it if it doesn't exist
-	if ! id -u encompass > /dev/null 2>&1; then
-		adduser --gecos encompass --disabled-password encompass > /dev/null 2>&1
+	# the blockone user is added earlier in some build configs only add it if it doesn't exist
+	if ! id -u blockone > /dev/null 2>&1; then
+		adduser --gecos blockone --disabled-password blockone > /dev/null 2>&1
 	fi
 
-	# make sure the encompass user can use the sudo command
-	adduser encompass sudo > /dev/null 2>&1
-	echo "encompass:loadsheet" | chpasswd > /dev/null 2>&1
+	# make sure the blockone user can use the sudo command
+	adduser blockone sudo > /dev/null 2>&1
+	echo "blockone:loadsheet" | chpasswd > /dev/null 2>&1
 
 	# don't want root to be able to login
 	message "Locking root account" "" "info"
@@ -206,14 +217,17 @@ software() {
 	# these are needed to run the wifi portal
 	apt-get update
 	apt-get install -y nodejs network-manager dnsmasq hostapd
+	# apt-get install -y network-manager dnsmasq hostapd
+
+	# curl -fsSL https://nodejs.org/dist/v16.20.2/node-v16.20.2-linux-armv7l.tar.xz | tar -xJ -C /usr/local --strip-components=1
 
 	# this is the wifi portal package
 	message "Installing WiFi portal" "" "info"
-	dpkg -i /tmp/encompass-portal.deb
+	dpkg -i /tmp/blockone-portal.deb
 
 	# this is the web interface that allows users to remotely reboot this device
 	message "Installing Device Control" "" "info"
-	dpkg -i /tmp/encompass-cockpit.deb
+	dpkg -i /tmp/blockone-cockpit.deb
 
 	message "Installing Kiosk Interface" "" "info"
 
@@ -221,16 +235,16 @@ software() {
 	apt-get install -y xserver-xorg x11-xserver-utils xinit openbox libnotify4 libnss3 libxss1 xdg-utils libsecret-1-0 libasound2
 
 	# this installs the user profile that starts the xserver and openbox
-	install -m 644 /tmp/.bashrc "/home/encompass/"
-	chown -R encompass:encompass /home/encompass
-	chown -R encompass:encompass /home/encompass/.bashrc
+	install -m 644 /tmp/.bashrc "/home/blockone/"
+	chown -R blockone:blockone /home/blockone
+	chown -R blockone:blockone /home/blockone/.bashrc
 
 	# these are needed to run the nvr app
 	apt-get install -y ffmpeg ntfs-3g fuse
 
 	# this is the web interface that allows users to setup nvr and sets up the nvr cronjobs
 	message "Installing Network Video Recorder" "" "info"
-	dpkg -i /tmp/encompass-nvr.deb
+	dpkg -i /tmp/blockone-nvr.deb
 
 	# need to get the cpu arch to install the proper kiosk build
 	ARCH=$(uname -m)
@@ -239,13 +253,13 @@ software() {
 		armv7l | armhf )
 
 			# 32 bit arm cpu
-			dpkg -i /tmp/encompass-kiosk-armhf.deb
+			dpkg -i /tmp/blockone-kiosk-armhf.deb
 			;;
 
 		aarch64 | arm64 )
 
 			# 64 bit arm cpu
-			dpkg -i /tmp/encompass-kiosk-arm64.deb
+			dpkg -i /tmp/blockone-kiosk-arm64.deb
 			;;
 	esac
 

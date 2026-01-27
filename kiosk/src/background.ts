@@ -8,7 +8,7 @@ protocol.registerSchemesAsPrivileged([{ scheme: "app", privileges: { secure: tru
 
 async function createWindow() {
     const window = new BrowserWindow({
-        title: "Encompass Cast",
+        title: "Block One Cast",
         fullscreen: !isDevelopment,
         frame: isDevelopment,
         darkTheme: true,
@@ -24,7 +24,7 @@ async function createWindow() {
         },
     });
 
-    window.setTitle("Encompass Cast");
+    window.setTitle("Block One Cast");
 
     if (process.env.WEBPACK_DEV_SERVER_URL) {
         await window.loadURL(process.env.WEBPACK_DEV_SERVER_URL as string);

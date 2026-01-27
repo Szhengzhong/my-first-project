@@ -9,7 +9,7 @@ class Hotspot {
     start(request, response) {
         if (!network.hotspot.running && network.wireless.enabled) {
             network.wireless.disconnect(request.body.iface || "wlan0");
-            network.hotspot.start(request.body.ssid || "Encompass", request.body.iface || "wlan0");
+            network.hotspot.start(request.body.ssid || "BlockOne", request.body.iface || "wlan0");
         }
 
         response.send();

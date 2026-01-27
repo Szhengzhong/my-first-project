@@ -1,7 +1,7 @@
 {
-    "name": "encompass-image",
-    "version": "22.7.10",
-    "description": "Encompass Image Builder",
+    "name": "blockone-image",
+    "version": "22.7.17",
+    "description": "Block One Image Builder",
     "license": "GPL-3.0",
     "engines": {
         "armbian": "22.02.0-trunk",
@@ -9,7 +9,7 @@
         "node": "16.14.0"
     },
     "author": {
-        "name": "Michael J Kellsy"
+        "name": "Block One"
     },
     "scripts": {
         "boards": "./project boards",

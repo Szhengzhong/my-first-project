@@ -22,7 +22,7 @@ for GRP in input spi i2c gpio; do
 done
 
 for GRP in adm dialout cdrom audio users sudo video games plugdev input gpio spi i2c netdev render; do
-  adduser encompass \$GRP
+  adduser blockone \$GRP
 done
 EOF
 

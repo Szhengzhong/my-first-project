@@ -1,20 +1,20 @@
 {
     "name": "kiosk",
-    "version": "22.7.10",
-    "description": "Encompass Cast",
+    "version": "22.7.17",
+    "description": "Block One Cast",
     "private": true,
     "author": {
-        "name": "Michael J Kellsy",
-        "email": "kellsy@encompass8.com"
+        "name": "Block One",
+        "email": "support@blockone.com"
     },
-    "homepage": "https://e8.co",
+    "homepage": "https://support.blockone.com",
     "scripts": {
         "build": "./project build",
         "debug": "./project debug",
         "postinstall": "electron-builder install-app-deps",
         "postuninstall": "electron-builder install-app-deps"
     },
-    "main": "background.ts",
+    "main": "background.js",
     "dependencies": {
         "axios": "^0.26.1",
         "browserslist": "^4.19.3",

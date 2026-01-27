@@ -1,5 +1,5 @@
 [Unit]
-Description=Encompass Cockpit
+Description=Block One Cockpit
 After=network-online.target
 
 [Service]

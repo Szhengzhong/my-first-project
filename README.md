@@ -1,5 +1,5 @@
-# Encompass OS Images
-This project is where Encompass Cast and other ARM SBC based software lives.
+# Block One OS Images
+This project is where Block One Cast and other ARM SBC based software lives.
 
 ## Setup
 This project uses the Debian Build System, NodeJS and GNU Make. You need to setup your enviornment first. If you are not running this in Debian 11 (Bullseye), you will first need to create a VM for this to work.
@@ -41,7 +41,7 @@ npm run build
 This will build all sub-projects first, then it will build the image. You will need to select the desired SOC, Linux kernel and NodeJS release.
 
 ## Recipes
-This project makes it simple to customize SBC images. In the recipes folder, there are folders for each spin of Encompass OS. You can add a preinst.sh, postinst.sh and install.sh.
+This project makes it simple to customize SBC images. In the recipes folder, there are folders for each spin of Block One OS. You can add a preinst.sh, postinst.sh and install.sh.
 
 **preinst.sh**  
 This runs on the host when building. You can transfer scripts, .deb packages and other files to the image being built.

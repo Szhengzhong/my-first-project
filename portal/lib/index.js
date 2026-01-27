@@ -42,7 +42,7 @@ class Server {
             this.running = true;
 
             network.wireless.disconnect("wlan0");
-            network.hotspot.start("Encompass", "wlan0");
+            network.hotspot.start("BlockOne", "wlan0");
 
             this.log.info(`listening on port ${parseInt(port, 10) || 80}`);
         });

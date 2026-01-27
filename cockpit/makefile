@@ -1,6 +1,6 @@
 cockpit: clean paths metadata package deploy vue modules
 	dpkg-deb --build dist
-	cp dist.deb builds/encompass-cockpit.deb
+	cp dist.deb builds/blockone-cockpit.deb
 	rm -f dist.deb
 	rm -fR dist
 	rm -fR interface
@@ -20,7 +20,6 @@ paths:
 metadata:
 	cat control | \
 	sed "s/__VERSION__/$(shell ./project version)/" | \
-	sed "s/__DEPENDS__/nodejs (>= 16.13.0)/" | \
 	sed "s/__ARCH__/all/" > dist/DEBIAN/control
 
 package:

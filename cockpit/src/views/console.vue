@@ -98,7 +98,7 @@
             <div class="screen" v-else>
                 <div class="content">
                     <h2>Rebooting now</h2>
-                    <p>IP address <strong>may change</strong> after reboot.<br/><br/>If you cannot access the console after a refresh of your browser, please access the Encompass Cast dashboard from inside your Encompass system to open the console again.</p>
+                    <p>IP address <strong>may change</strong> after reboot.<br/><br/>If you cannot access the console after a refresh of your browser, please access the Block One Cast dashboard from inside your Block One system to open the console again.</p>
                 </div>     
             </div>
         </div>
