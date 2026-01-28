@@ -1,6 +1,6 @@
 {
     "name": "portal",
-    "version": "22.7.17",
+    "version": "22.7.18",
     "description": "Block One Capitive WiFi Portal",
     "license": "GPL-3.0",
     "main": "main.js",

@@ -1,6 +1,6 @@
 {
     "name": "cockpit",
-    "version": "22.7.17",
+    "version": "22.7.18",
     "private": true,
     "scripts": {
         "debug": "./project debug"
