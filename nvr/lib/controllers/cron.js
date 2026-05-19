@@ -126,7 +126,7 @@ class Cron {
                 result: {},
                 time: new Date().toISOString(),
             });
-        }
+        
 
         Log.info("cron", "Checking directory exists");
 

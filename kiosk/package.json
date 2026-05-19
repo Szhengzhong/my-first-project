@@ -10,7 +10,8 @@
     "homepage": "https://support.blockone.com",
     "scripts": {
         "build": "./project build",
-        "debug": "./project debug",
+        "debug": "node scripts/debug.js",
+        "debug-win": "node scripts/debug-win.js",
         "postinstall": "electron-builder install-app-deps",
         "postuninstall": "electron-builder install-app-deps"
     },

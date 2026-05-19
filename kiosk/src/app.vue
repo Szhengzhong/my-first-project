@@ -13,7 +13,13 @@
                     <span class="registration">{{ display }}</span>
                     <span class="address">{{ address }}</span>
                 </div>
+                <div v-else-if="address" class="message">
+                    <!-- 即使player为空，如果有IP地址，说明网络已连接 -->
+                    <span>Device is starting up...</span>
+                    <span class="address">{{ address }}</span>
+                </div>
                 <div v-else class="message">
+                    <!-- 完全没有网络 -->
                     <span>Connecting to network...</span>
                     <span class="address">{{ address }}</span>
                 </div>
@@ -27,9 +33,8 @@
 <script>
     import Os from "os";
     import Logo from "@/components/logo.vue";
-    import Encompass from "./encompass";
-    import Instance from "./instance";
-
+    // import Encompass from "./encompass"
+    import B1Cast from "./b1Cast";
     export default {
         name: "app",
 
@@ -72,15 +77,41 @@
 
         methods: {
             async fetch() {
-                await Encompass.register();
+                try {
+                    // 添加5秒超时，防止网络不可用时卡住
+                    await Promise.race([
+                        B1Cast.register(),
+                        new Promise((_, reject) =>
+                            setTimeout(() => reject(new Error("Network timeout")), 5000)
+                        )
+                    ]);
+                } catch (error) {
+                    console.warn("B1Cast registration failed:", error.message);
+                    // 继续显示界面，即使API不可用
+                }
 
-                this.url = Instance.url;
-                this.player = Instance.player;
-                this.display = Instance.name;
-                this.registration = Instance.registration;
+                // 只有URL有效时才使用，否则显示配置界面
+                const rawUrl = B1Cast.instance.url;
+                this.url = (rawUrl && rawUrl !== "about:blank") ? rawUrl : undefined;
+                console.log("🌐 Final URL for display:", { rawUrl, displayUrl: this.url });
+                
+                this.player = B1Cast.instance.player;
+                this.display = B1Cast.instance.name;
+                this.registration = B1Cast.instance.registration;
                 this.address = await this.ip();
                 this.loading = false;
-                this.manufacturer = await Encompass.getBoardInfo();
+                
+                try {
+                    this.manufacturer = await Promise.race([
+                        B1Cast.getBoardInfo(),
+                        new Promise((_, reject) =>
+                            setTimeout(() => reject(new Error("Timeout")), 3000)
+                        )
+                    ]);
+                } catch (error) {
+                    console.warn("Failed to get board info:", error.message);
+                }
+                
                 setTimeout(async () => {
                     await this.fetch();
                 }, this.timeout);
@@ -97,7 +128,7 @@
                     });
                 });
 
-                if (results.length > 0) await Encompass.logIp(results[0]);
+                if (results.length > 0) await B1Cast.logIp(results[0]);
 
                 return results[0];
             },
@@ -127,7 +158,8 @@
 
 <style lang="scss">
     html,
-    body {
+    body,
+    #app {
         width: 100%;
         height: 100%;
         margin: 0;

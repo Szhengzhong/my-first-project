@@ -140,3 +140,6 @@ image/cache/
 image/output/
 image/userpatches/
 builds/
+.vs/
+kiosk/.electron-cache/
+kiosk/.npm-cache/
